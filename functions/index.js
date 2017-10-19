@@ -13,11 +13,22 @@ const MATCH_ARGUMENT = 'match';
 exports.searchStage = functions.https.onRequest((request, response) => {
   moment.tz.setDefault("Asia/Tokyo");
   const app = new App({request, response});
+
   function welcomeIntent(app) {
-    app.ask('どのステージ情報が知りたいですか？');
+    const matchArg = app.getArgument(MATCH_ARGUMENT);
+    if (matchArg != null) {
+      requestSearch(app, matchArg);
+    } else {
+      app.ask('どのステージ情報が知りたいですか？');
+    }
   }
+
   function searchNowIntent(app) {
     const matchArg = app.getArgument(MATCH_ARGUMENT);
+    requestSearch(app, matchArg);
+  }
+
+  function requestSearch(app, matchArg) {
     var match;
     switch (matchArg){
       case 'レギュラーマッチ':
@@ -49,7 +60,7 @@ exports.searchStage = functions.https.onRequest((request, response) => {
           return;
         }
         var rule = result.result[0].rule;
-        switch (matchArg){
+        switch (matchArg) {
           case 'レギュラーマッチ':
           case 'ナワバリバトル':
             rule = result.result[0].rule;
@@ -75,9 +86,9 @@ exports.searchStage = functions.https.onRequest((request, response) => {
         app.tell('エラーが発生しました');
       }
     }
-
     requestApi(options, callback);
   }
+
   const actionMap = new Map();
   actionMap.set(WELCOME_INTENT, welcomeIntent);
   actionMap.set(SEARCH_NOW, searchNowIntent);
