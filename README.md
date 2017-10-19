@@ -20,4 +20,5 @@ https://spla2.yuu26.com
 * リーグマッチ
 
 ## スクリーンショット
-![screenshot](screenshot.png)
+![screenshot1](screenshot_1.png)
+![screenshot2](screenshot_2.png)
