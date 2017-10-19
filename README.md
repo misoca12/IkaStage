@@ -1,5 +1,5 @@
-# IkaStage
-スプラトゥーン2のステージ情報を取得するGoogleアシスタントアプリ  
+# イカステージ
+スプラトゥーン2のステージ情報を取得するGoogleアシスタントアプリ  
 Google Assistant app that gets stage information for Splatoon 2  
 
 当アプリは以下のAPIを利用して作成しています。  
